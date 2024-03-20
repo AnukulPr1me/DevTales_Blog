@@ -1,4 +1,3 @@
-```markdown
 # Welcome to DevTels Blog
 
 Welcome to **DevTels Blog**! Your go-to destination for all things technology and IT-related. Dive into our vast array of articles, tutorials, and insights crafted to keep you updated and informed about the latest trends and developments in the tech world.
@@ -40,4 +39,3 @@ We welcome contributions from fellow tech enthusiasts! If you have insights to s
 Got questions, feedback, or just want to say hello? We'd love to hear from you! You can reach out to us via [email](mailto:contact@devtelsblog.com) or connect with us on [Twitter](https://twitter.com/DevTelsBlog).
 
 Thank you for visiting **DevTels Blog**! We're excited to have you onboard and look forward to enriching your tech journey with our content. Happy reading!
-```
