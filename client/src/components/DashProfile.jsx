@@ -17,7 +17,7 @@ import {
 } from "../redux/user/userSlice";
 
 export default function DashProfile() {
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser, error, loading } = useSelector((state) => state.user);
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
@@ -83,7 +83,7 @@ export default function DashProfile() {
     }
     try {
       dispatch(updateStart());
-      const res = await fetch(`/api/users/update/${currentUser. _id}`, {
+      const res = await fetch(`/api/user/update/${currentUser. _id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
