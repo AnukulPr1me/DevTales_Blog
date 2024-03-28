@@ -1,10 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Alert, Button, TextInput } from "flowbite-react";
-import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
-import { app } from '../firebase';
-import { CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
+import { app } from "../firebase";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+import {
+  updateFailure,
+  updateStart,
+  updateSuccess,
+} from "../redux/user/userSlice";
 
 export default function DashProfile() {
   const { currentUser } = useSelector((state) => state.user);
@@ -12,7 +22,9 @@ export default function DashProfile() {
   const [imageFileUrl, setImageFileUrl] = useState(null);
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
   const [imageFileUploadError, setImageFileUploadError] = useState(null);
+  const [formData, setFormData] = useState({});
   const filePicRef = useRef();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (imageFile) {
@@ -33,17 +45,20 @@ export default function DashProfile() {
     const fileName = new Date().getTime() + imageFile.name;
     const storageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(storageRef, imageFile);
-    
+
     uploadTask.on(
       "state_changed",
       (snapshot) => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setImageFileUploadProgress(progress.toFixed(0));
         console.log("Upload is " + progress + "% done");
       },
       (error) => {
         console.log(error);
-        setImageFileUploadError("Couldn't upload image (File must be less than 2MB)");
+        setImageFileUploadError(
+          "Couldn't upload image (File must be less than 2MB)"
+        );
         setImageFileUploadProgress(null);
         setImageFile(null);
         setImageFileUrl(null);
@@ -51,15 +66,48 @@ export default function DashProfile() {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImageFileUrl(downloadURL);
+          setFormData({ ...formData, profilePicture: downloadURL });
         });
       }
     );
+  };
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+  console.log(formData);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (Object.keys(formData).length === 0) {
+      return;
+    }
+    try {
+      dispatch(updateStart());
+      const res = await fetch(`/api/users/update/${currentUser. _id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      
+      if(!res.ok) {
+        dispatch(updateFailure(data.message));
+      }
+      else {
+        dispatch(updateSuccess(data.message));
+      }
+    } catch (error) {
+      dispatch(updateFailure(error.message));
+      console.log(error);
+    }
   };
 
   return (
     <div className="max-w-lg mx-auto p-3 w-full">
       <h1 className="my-7 text-center font-semibold text-3xl">Profile</h1>
-      <form className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="file"
           accept="image/*"
@@ -74,23 +122,25 @@ export default function DashProfile() {
           {imageFileUrl && (
             <>
               {imageFileUploadProgress && (
-                <CircularProgressbar 
-                  value={imageFileUploadProgress || 0} 
+                <CircularProgressbar
+                  value={imageFileUploadProgress || 0}
                   text={`${imageFileUploadProgress}%`}
                   strokeWidth={5}
                   styles={{
-                    root:{
-                      width: '100%',
-                      height: '100%',
-                      position: 'absolute',
+                    root: {
+                      width: "100%",
+                      height: "100%",
+                      position: "absolute",
                       top: 0,
                       left: 0,
                       zIndex: 1000,
                     },
                     path: {
-                      stroke: `rgba(62, 152, 199, ${imageFileUploadProgress / 100})`,
-                      strokeWidth: '5',
-                      transition: 'transform 0.5s ease-in-out',
+                      stroke: `rgba(62, 152, 199, ${
+                        imageFileUploadProgress / 100
+                      })`,
+                      strokeWidth: "5",
+                      transition: "transform 0.5s ease-in-out",
                     },
                   }}
                 />
@@ -99,7 +149,9 @@ export default function DashProfile() {
                 src={imageFileUrl}
                 alt="user"
                 className={`rounded-full w-full h-full object-cover border-8 border-[lightgray] ${
-                  imageFileUploadProgress && imageFileUploadProgress < 100 && 'opacity-60'
+                  imageFileUploadProgress &&
+                  imageFileUploadProgress < 100 &&
+                  "opacity-60"
                 }`}
               />
             </>
@@ -112,24 +164,29 @@ export default function DashProfile() {
             />
           )}
         </div>
-        {imageFileUploadError && <Alert color='failure'>{imageFileUploadError}</Alert>}
+        {imageFileUploadError && (
+          <Alert color="failure">{imageFileUploadError}</Alert>
+        )}
         <TextInput
           type="text"
           id="username"
           placeholder="username"
           defaultValue={currentUser.username}
+          onChange={handleChange}
         />
         <TextInput
           type="text"
           id="email"
           placeholder="email"
           defaultValue={currentUser.email}
+          onChange={handleChange}
         />
         <TextInput
           type="text"
           id="bio"
           placeholder="Bio..."
           defaultValue={currentUser.bio}
+          onChange={handleChange}
           style={{ height: "90px" }}
         />
         <TextInput
@@ -137,6 +194,7 @@ export default function DashProfile() {
           id="password"
           placeholder="password"
           defaultValue={currentUser.password}
+          onChange={handleChange}
         />
         <Button type="submit" outline>
           Update
