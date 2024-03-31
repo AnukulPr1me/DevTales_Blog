@@ -20,6 +20,10 @@ const useSchema = new mongoose.Schema(
       type: String,
       default: "https://images7.alphacoders.com/135/1355992.jpg",
     },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    }
   },
   { timestamps: true }
 );
