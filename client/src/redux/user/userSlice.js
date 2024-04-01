@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   currentUser: null,
@@ -6,8 +6,8 @@ const initialState = {
   loading: false,
 };
 
-const userSlices = createSlice({
-  name: "user",
+const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {
     signInStart: (state) => {
@@ -15,11 +15,11 @@ const userSlices = createSlice({
       state.error = null;
     },
     signInSuccess: (state, action) => {
+      state.currentUser = action.payload;
       state.loading = false;
       state.error = null;
-      state.currentUser = action.payload;
     },
-    signInError: (state, action) => {
+    signInFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
@@ -28,9 +28,9 @@ const userSlices = createSlice({
       state.error = null;
     },
     updateSuccess: (state, action) => {
+      state.currentUser = action.payload;
       state.loading = false;
       state.error = null;
-      state.currentUser = action.payload;
     },
     updateFailure: (state, action) => {
       state.loading = false;
@@ -41,27 +41,26 @@ const userSlices = createSlice({
       state.error = null;
     },
     deleteUserSuccess: (state) => {
+      state.currentUser = null;
       state.loading = false;
       state.error = null;
-      state.currentUser = null;
     },
     deleteUserFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
-    signoutSuccess: (state, action) => {
-      state.loading = false;
-      state.error = null;
+    signoutSuccess: (state) => {
       state.currentUser = null;
+      state.error = null;
+      state.loading = false;
     },
-  
   },
 });
 
 export const {
   signInStart,
   signInSuccess,
-  signInError,
+  signInFailure,
   updateStart,
   updateSuccess,
   updateFailure,
@@ -69,5 +68,6 @@ export const {
   deleteUserSuccess,
   deleteUserFailure,
   signoutSuccess,
-} = userSlices.actions;
-export default userSlices.reducer;
+} = userSlice.actions;
+
+export default userSlice.reducer;
