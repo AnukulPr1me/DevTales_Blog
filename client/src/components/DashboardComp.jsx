@@ -75,7 +75,7 @@ export default function DashboardComp() {
               <h3 className='text-gray-500 text-md uppercase'>Total Users</h3>
               <p className='text-2xl'>{totalUsers}</p>
             </div>
-            <HiOutlineUserGroup className='bg-teal-600  text-white rounded-full text-5xl p-3 shadow-lg' />
+            <HiOutlineUserGroup className='bg-green-600  text-white rounded-full text-5xl p-3 shadow-lg' />
           </div>
           <div className='flex  gap-2 text-sm'>
             <span className='text-green-500 flex items-center'>
@@ -124,7 +124,7 @@ export default function DashboardComp() {
         <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800'>
           <div className='flex justify-between  p-3 text-sm font-semibold'>
             <h1 className='text-center p-2'>Recent users</h1>
-            <Button outline gradientDuoTone='purpleToPink'>
+            <Button outline gradientDuoTone='greenToBlue'>
               <Link to={'/dashboard?tab=users'}>See all</Link>
             </Button>
           </div>
@@ -153,7 +153,7 @@ export default function DashboardComp() {
         <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800'>
           <div className='flex justify-between  p-3 text-sm font-semibold'>
             <h1 className='text-center p-2'>Recent comments</h1>
-            <Button outline gradientDuoTone='purpleToPink'>
+            <Button outline gradientDuoTone='greenToBlue'>
               <Link to={'/dashboard?tab=comments'}>See all</Link>
             </Button>
           </div>
@@ -178,7 +178,7 @@ export default function DashboardComp() {
         <div className='flex flex-col w-full md:w-auto shadow-md p-2 rounded-md dark:bg-gray-800'>
           <div className='flex justify-between  p-3 text-sm font-semibold'>
             <h1 className='text-center p-2'>Recent posts</h1>
-            <Button outline gradientDuoTone='purpleToPink'>
+            <Button outline gradientDuoTone='greenToBlue'>
               <Link to={'/dashboard?tab=posts'}>See all</Link>
             </Button>
           </div>
