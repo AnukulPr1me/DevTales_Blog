@@ -19,7 +19,7 @@ If you're interested in contributing to the Devtails Blog Website, whether it's 
 
 ## Contact
 
-If you have any questions, suggestions, or just want to say hello, you can reach out to the author via email at [author@devtails.com](mailto:anukul_chandra@outlook.com).
+If you have any questions, suggestions, or just want to say hello, you can reach out to the author via email at [anukul_chandra@outlook.com](mailto:anukul_chandra@outlook.com).
 
 ## Acknowledgements
 
