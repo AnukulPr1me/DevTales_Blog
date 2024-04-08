@@ -1,8 +1,4 @@
-# React + Vite
+# Welcome to the Frontend Directory
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
+Welcome to the frontend directory of our repository! This directory contains all the files and resources related to the frontend component of our software application. Here, you'll find the code responsible for creating the user interface and handling user interactions.

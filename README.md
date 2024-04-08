@@ -11,7 +11,7 @@ Welcome to Devtails Blog Website! This is a personal blog website where I share 
 
 ## Getting Started
 
-To start exploring the Devtails Blog Website, simply visit [www.devtails.com](https://www.devtails.com). From there, you can browse through various blog posts, articles, and tutorials covering a range of topics.
+To start exploring the Devtails Blog Website, simply visit [devtales.onrender.com](https://devtales.onrender.com/). From there, you can browse through various blog posts, articles, and tutorials covering a range of topics.
 
 ## Contributing
 
