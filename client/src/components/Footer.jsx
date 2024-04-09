@@ -20,21 +20,21 @@ export default function FooterCom() {
           </div>
           <div className='grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 sm:gap-6'>
             <div>
-              <Footer.Title title='About' />
+              <Footer.Title title='Coding' />
               <Footer.LinkGroup col>
                 <Footer.Link
-                  href='https://github.com/AnukulPr1me/Project-PixGen'
+                  href='https://leetcode.com/Anukul_chandra'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
-                  Project PixGen 
+                  Leetcode 
                 </Footer.Link>
                 <Footer.Link
-                  href='https://github.com/AnukulPr1me/Portfolio_2024'
+                  href='https://www.naukri.com/code360/profile/Anukul_Pr1me'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
-                  Portfolio 2024
+                  Coding Ninja
                 </Footer.Link>
               </Footer.LinkGroup>
             </div>
@@ -48,7 +48,7 @@ export default function FooterCom() {
                 >
                   Github
                 </Footer.Link>
-                <Footer.Link href='https://discord.gg/4sDTYtpB'>Discord</Footer.Link>
+                <Footer.Link href='https://www.instagram.com/pr1me_3d'>Instagram</Footer.Link>
               </Footer.LinkGroup>
             </div>
             <div>
