@@ -1,6 +1,6 @@
 import { Footer } from 'flowbite-react';
 import { Link } from 'react-router-dom';
-import { BsFacebook, BsInstagram, BsTwitter, BsGithub, BsDribbble, BsDiscord, BsYoutube } from 'react-icons/bs';
+import { BsInstagram, BsTwitter, BsGithub, BsDiscord, BsYoutube } from 'react-icons/bs';
 
 export default function FooterCom() {
   return (
@@ -48,7 +48,7 @@ export default function FooterCom() {
                 >
                   Github
                 </Footer.Link>
-                <Footer.Link href='#'>Discord</Footer.Link>
+                <Footer.Link href='https://discord.gg/4sDTYtpB'>Discord</Footer.Link>
               </Footer.LinkGroup>
             </div>
             <div>
@@ -69,10 +69,10 @@ export default function FooterCom() {
           />
           <div className="flex gap-6 sm:mt-0 mt-4 sm:justify-center">
             <Footer.Icon href='https://discord.gg/4sDTYtpB' icon={BsDiscord}/>
-            <Footer.Icon href='#' icon={BsInstagram}/>
-            <Footer.Icon href='#' icon={BsYoutube}/>
+            <Footer.Icon href='https://www.instagram.com/pr1me_3d' icon={BsInstagram}/>
+            <Footer.Icon href='https://www.youtube.com/channel/UCl-K6lPd6-NJaxvbLJou5Vg' icon={BsYoutube}/>
             <Footer.Icon href='https://github.com/anukulpr1me' icon={BsGithub}/>
-            <Footer.Icon href='#' icon={BsDribbble}/>
+            <Footer.Icon href='https://twitter.com/Anukulpr1me' icon={BsTwitter}/>
 
           </div>
         </div>
